@@ -18,6 +18,7 @@ export default function RootLayout({ children }) {
       <body>
         <CartProvider>
           <Navbar />
+          
           <main className="container-max py-6">{children}</main>
           <Footer />
         </CartProvider>
