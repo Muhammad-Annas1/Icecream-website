@@ -17,6 +17,7 @@ export default function Navbar() {
         <nav className="flex items-center gap-6">
           <Link className="nav-link" href="/menu">Menu</Link>
           <Link className="nav-link" href="/about">About Us</Link>
+          <Link className="nav-link" href="/reviews">Reviews</Link>
           <Link className="nav-link" href="/cart" aria-label="Cart">
             <div className="relative inline-flex items-center">
               <ShoppingCart size={22} />
