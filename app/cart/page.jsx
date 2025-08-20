@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function CartPage() {
   const { items, total, clearCart } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -22,33 +23,51 @@ export default function CartPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Order submitted!\n
-Name: ${formData.name}
-Phone: ${formData.phone}
-Address: ${formData.address}
-Payment: ${formData.payment}`);
     setShowCheckout(false);
+    setOrderPlaced(true);
+    clearCart();
   };
 
   return (
     <div>
       <h1 className="text-3xl font-bold mb-4">Your Cart</h1>
 
-      {items.length === 0 ? (
+      {orderPlaced ? (
+        <div className="card text-center p-6">
+          <h2 className="text-xl font-semibold text-green-600">
+            ✅ Your order has been placed!
+          </h2>
+          <p className="mt-2 text-slate-600">Thank you for shopping with us 🎉</p>
+          <Link className="btn-primary mt-4" href="/menu">
+            Continue Shopping
+          </Link>
+        </div>
+      ) : items.length === 0 ? (
         <div className="card text-center">
           <p>Your cart is empty.</p>
-          <Link className="btn-primary mt-3" href="/menu">Browse Menu</Link>
+          <Link className="btn-primary mt-3" href="/menu">
+            Browse Menu
+          </Link>
         </div>
       ) : (
         <>
           <div className="card">
-            {items.map(i => <CartItemRow key={i.id} item={i} />)}
+            {items.map((i) => (
+              <CartItemRow key={i.id} item={i} />
+            ))}
             <div className="mt-4 flex items-center justify-between">
-              <button className="btn-outline" onClick={clearCart}>Clear Cart</button>
+              <button className="btn-outline" onClick={clearCart}>
+                Clear Cart
+              </button>
               <div className="text-right">
                 <div className="text-sm text-slate-600">Subtotal</div>
-                <div className="text-2xl font-extrabold">PKR {total.toLocaleString()}</div>
-                <button className="btn-primary mt-3" onClick={() => setShowCheckout(true)}>
+                <div className="text-2xl font-extrabold">
+                  PKR {total.toLocaleString()}
+                </div>
+                <button
+                  className="btn-primary mt-3"
+                  onClick={() => setShowCheckout(true)}
+                >
                   Checkout
                 </button>
               </div>
