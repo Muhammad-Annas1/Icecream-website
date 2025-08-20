@@ -181,7 +181,7 @@ export const products = [
     price: 380,
     emoji: "🫐",
     description: "Blueberry bliss.",
-    image: "/products/Blueberry-shake.jpg",
+    image: "/products/blueberry-shake.jpg",
   },
   {
     id: "sh5",
