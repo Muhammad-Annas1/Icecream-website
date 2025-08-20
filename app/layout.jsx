@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Chill & Swirl — Ice Cream Shop",
-  description: "A sweet Next.js + Tailwind demo shop with cart in PKR",
+  description: "A delicious collection of ice cream flavors and more!",
 };
 
 import "./globals.css";
@@ -11,6 +11,10 @@ import Footer from "../components/Footer";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Tab icon */}
+        <link rel="icon" href="/logo.png" type="image/png" />
+      </head>
       <body>
         <CartProvider>
           <Navbar />
